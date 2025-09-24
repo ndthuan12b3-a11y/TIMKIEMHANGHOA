@@ -53,6 +53,7 @@
         .dark input::placeholder {
             color: #888;
         }
+        
         /* Custom Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -90,11 +91,16 @@
         .spinner {
             animation: spin 1s linear infinite;
         }
+
+        /* Thêm hiệu ứng hover cho các nút quản lý phân loại */
+        .category-actions button:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 p-8 flex items-center justify-center min-h-screen transition-all duration-300">
-
     <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-2xl w-full max-w-2xl transform transition-all duration-500">
+        <!-- Header và nút Dark Mode -->
         <div class="flex items-center justify-between mb-6">
             <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-100"></h1>
             <button id="toggle-dark-mode" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 transition-colors duration-300">
@@ -107,6 +113,7 @@
             </button>
         </div>
 
+        <!-- Thanh tìm kiếm và nút Thêm/Đóng -->
         <div class="flex items-center space-x-4 mb-6">
             <div class="relative flex-grow">
                 <input
@@ -131,13 +138,15 @@
                 </svg>
             </button>
         </div>
-
+        
+        <!-- Lịch sử tìm kiếm -->
         <div id="history-section" class="mb-6">
             <h2 class="text-md font-semibold text-gray-700 dark:text-gray-400 mb-2">Lịch sử tìm kiếm gần đây</h2>
             <div id="history-list" class="flex flex-wrap gap-2">
             </div>
         </div>
 
+        <!-- Phần Thêm/Sửa sản phẩm và quản lý phân loại -->
         <div id="product-form-section" class="p-4 rounded-2xl bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 animate-fade-in hidden">
             <div class="mb-6">
                 <h2 id="form-title" class="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-200">Thêm sản phẩm</h2>
@@ -208,7 +217,8 @@
                     </div>
                 </form>
             </div>
-            
+
+            <!-- Phần quản lý phân loại -->
             <div class="p-4 rounded-2xl bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 animate-fade-in mt-4">
                 <button id="toggle-category-btn" class="flex items-center justify-between w-full text-xl font-semibold mb-2 text-gray-700 dark:text-gray-200 focus:outline-none">
                     <span>Quản lý Phân loại</span>
@@ -229,6 +239,7 @@
                 </div>
             </div>
 
+            <!-- Danh sách sản phẩm -->
             <div id="product-list-section">
                 <hr class="my-4 border-gray-200 dark:border-gray-600" />
                 <div class="flex justify-between items-center mb-4">
@@ -264,6 +275,7 @@
                 </div>
             </div>
 
+            <!-- Sao lưu và Phục hồi -->
             <hr class="my-4 border-gray-200 dark:border-gray-600" />
             <div class="animate-fade-in">
                 <h2 class="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-200">Sao lưu & Phục hồi</h2>
@@ -281,6 +293,7 @@
             </div>
         </div>
 
+        <!-- Phần hiển thị kết quả tìm kiếm -->
         <div id="search-results-section" class="hidden p-4 rounded-2xl bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 animate-fade-in">
             <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-4"></h2>
             <ul id="search-results-list" class="space-y-2"></ul>
@@ -288,6 +301,7 @@
         </div>
     </div>
 
+    <!-- Hộp thoại xác nhận (dùng chung cho xóa và đổi tên phân loại) -->
     <div id="confirmation-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 hidden">
         <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white dark:bg-gray-800">
             <div class="mt-3 text-center">
@@ -307,6 +321,27 @@
         </div>
     </div>
 
+    <!-- Hộp thoại tùy chỉnh để đổi tên phân loại -->
+    <div id="rename-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 hidden">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white dark:bg-gray-800">
+            <div class="mt-3 text-center">
+                <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100">Đổi tên phân loại</h3>
+                <div class="mt-2 px-7 py-3">
+                    <input type="text" id="rename-category-input" placeholder="Nhập tên mới..." class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-lime-500 focus:border-lime-500 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200" />
+                </div>
+                <div class="items-center px-4 py-3">
+                    <button id="rename-confirm-btn" class="px-4 py-2 bg-lime-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-lime-500">
+                        Xác nhận
+                    </button>
+                    <button id="rename-cancel-btn" class="mt-3 px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                        Hủy
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thông báo Toast -->
     <div id="toast-notification" class="fixed bottom-5 right-5 p-4 rounded-lg shadow-lg z-50 hidden">
         <div class="flex items-center space-x-2">
             <svg id="toast-icon-success" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -320,12 +355,13 @@
     </div>
 
     <script>
+        // --- Cấu hình IndexedDB và các biến toàn cục ---
         const DB_NAME = 'product-db';
         const DB_VERSION = 4;
         const STORE_PRODUCTS = 'products';
         const STORE_CATEGORIES = 'categories';
         const STORE_HISTORY = 'search_history';
-        const LAST_BACKUP_TIME_KEY = 'lastBackupTime'; // Khóa mới cho thời gian sao lưu
+        const LAST_BACKUP_TIME_KEY = 'lastBackupTime';
         const PAGE_SIZE = 10;
         const HISTORY_LIMIT = 5;
 
@@ -336,6 +372,7 @@
         let currentSort = { key: 'createdAt', direction: 'desc' };
         let searchTimeoutId = null;
 
+        // --- Lấy các phần tử DOM ---
         const productFormSection = document.getElementById('product-form-section');
         const searchResultsSection = document.getElementById('search-results-section');
         const toggleFormBtn = document.getElementById('toggle-form-btn');
@@ -377,30 +414,36 @@
         const toggleDarkModeBtn = document.getElementById('toggle-dark-mode');
         const sunIcon = document.getElementById('sun-icon');
         const moonIcon = document.getElementById('moon-icon');
+        const renameModal = document.getElementById('rename-modal');
+        const renameCategoryInput = document.getElementById('rename-category-input');
+        const renameConfirmBtn = document.getElementById('rename-confirm-btn');
+        const renameCancelBtn = document.getElementById('rename-cancel-btn');
+
 
         let isEditing = false;
         let currentProductId = null;
+        let currentCategoryToRename = null;
 
         // --- Helper Functions ---
         const showElement = (element) => element.classList.remove('hidden');
         const hideElement = (element) => element.classList.add('hidden');
         
+        // Chuẩn hóa chuỗi để tìm kiếm không dấu
         const normalizeString = (str) => {
             if (!str) return '';
             return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         };
 
+        // Viết hoa chữ cái đầu tiên của mỗi từ
         const capitalizeFirstLetterOfEachWord = (str) => {
             if (!str) return '';
-            const words = str.toLowerCase().split(' ');
+            const words = str.toLowerCase().split(' ').filter(word => word.length > 0);
             for (let i = 0; i < words.length; i++) {
-                if (words[i].length > 0) {
-                    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
-                }
+                words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
             }
             return words.join(' ');
         };
-        
+
         const showLoading = (btn) => {
             btn.innerHTML = `<svg class="spinner h-5 w-5 text-white animate-spin" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`;
             btn.disabled = true;
@@ -453,7 +496,7 @@
             confirmYesBtn.addEventListener('click', handleConfirm);
             confirmNoBtn.addEventListener('click', handleCancel);
         };
-        
+
         const sortAndFilterProducts = () => {
             const productListQuery = normalizeString(productListSearchInput.value.trim());
             
@@ -485,7 +528,7 @@
             const visibleProducts = sortedProducts.slice(0, currentPage * PAGE_SIZE);
             return { visibleProducts, totalFiltered: sortedProducts.length };
         };
-        
+
         const renderProducts = () => {
             const { visibleProducts, totalFiltered } = sortAndFilterProducts();
             productList.innerHTML = '';
@@ -499,14 +542,18 @@
                     li.className = 'flex justify-between items-center px-4 py-2 bg-white dark:bg-gray-700 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600 transition hover:shadow-md duration-200 animate-fade-in';
                     li.style.animationDelay = `${index * 0.05}s`;
                     li.innerHTML = `
-                        <div class="flex-grow">
-                            <p class="font-semibold text-gray-800 dark:text-gray-100 text-sm">
-                                ${product.name}
-                                <span class="text-xs text-gray-400 dark:text-gray-500 italic">
-                                    ${(product.quantity || product.unit) ? `(${product.quantity || ''} ${product.unit || ''})` : ''}
-                                </span>
-                            </p>
-                            <span class="text-xs text-gray-500 dark:text-gray-400 italic">${product.category}</span>
+                        <div class="flex-grow flex items-center">
+                            <!-- Hiển thị số thứ tự -->
+                            <span class="mr-2 text-sm font-semibold text-gray-500 dark:text-gray-400">${index + 1}.</span>
+                            <div>
+                                <p class="font-semibold text-gray-800 dark:text-gray-100 text-sm">
+                                    ${product.name}
+                                    <span class="text-xs text-gray-400 dark:text-gray-500 italic">
+                                        ${(product.quantity || product.unit) ? `(${product.quantity || ''} ${product.unit || ''})` : ''}
+                                    </span>
+                                </p>
+                                <span class="text-xs text-gray-500 dark:text-gray-400 italic">${product.category}</span>
+                            </div>
                         </div>
                         <div class="flex space-x-2 ml-4">
                             <button class="edit-btn" data-id="${product.id}">
@@ -553,19 +600,32 @@
                 li.className = 'flex items-center justify-between p-2 bg-white dark:bg-gray-700 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600';
                 li.innerHTML = `
                     <span class="text-sm text-gray-800 dark:text-gray-100 flex-grow">${cat}</span>
-                    <button class="rename-category-btn ml-2" data-name="${cat}">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-lime-500 hover:text-lime-600 transition duration-300" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                            <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 000 2H4v10h10v-4a1 1 0 102 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
+                    <div class="category-actions flex space-x-2 ml-2">
+                        <button class="rename-category-btn" data-name="${cat}">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-lime-500 hover:text-lime-600 transition duration-300" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 000 2H4v10h10v-4a1 1 0 102 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <button class="delete-category-btn" data-name="${cat}">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-500 hover:text-red-600 transition duration-300" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M9 2a1 1 00-.894.553L7.382 4H4a1 1 000 2v10a2 2 002 2h8a2 2 002-2V6a1 1 0100-2h-3.382l-.724-1.447A1 1 0011 2H9zM7 8a1 1 012 0v6a1 1 011-2 0V8zm6 0a1 1 011-2 0v6a1 1 0112 0V8z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
                 `;
                 categoryList.appendChild(li);
             });
             document.querySelectorAll('.rename-category-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const oldName = e.currentTarget.dataset.name;
-                    handleRenameCategory(oldName);
+                    showRenameModal(oldName);
+                });
+            });
+            document.querySelectorAll('.delete-category-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const categoryName = e.currentTarget.dataset.name;
+                    handleDeleteCategory(categoryName);
                 });
             });
         };
@@ -721,7 +781,16 @@
                     request.onsuccess = () => resolve();
                     request.onerror = () => reject(request.error);
                 });
-            }
+            },
+            async deleteAll(storeName) {
+                return new Promise((resolve, reject) => {
+                    const transaction = this.conn.transaction(storeName, 'readwrite');
+                    const store = transaction.objectStore(storeName);
+                    const request = store.clear();
+                    request.onsuccess = () => resolve();
+                    request.onerror = (event) => reject(event.target.error);
+                });
+            },
         };
 
         // --- Data Loading and Syncing ---
@@ -757,12 +826,12 @@
         // --- Data Handling ---
         const handleFormSubmit = async (event) => {
             event.preventDefault();
-            const name = productNameInput.value.trim().toUpperCase(); // Chuyển sang in hoa
+            const name = capitalizeFirstLetterOfEachWord(productNameInput.value.trim());
             const quantity = productQuantityInput.value ? parseInt(productQuantityInput.value) : null;
-            const unit = productUnitInput.value.trim();
-            const newCategory = newCategoryInput.value.trim();
+            const unit = capitalizeFirstLetterOfEachWord(productUnitInput.value.trim());
+            const newCategory = capitalizeFirstLetterOfEachWord(newCategoryInput.value.trim());
             const category = newCategory || productCategorySelect.value;
-            
+
             if (!name) {
                 showToast('Tên sản phẩm không được để trống.', true);
                 return;
@@ -783,7 +852,7 @@
                     product.quantity = quantity;
                     product.unit = unit;
                     product.category = category;
-                    
+                                        
                     showLoading(submitBtn);
                     await db.put(STORE_PRODUCTS, product);
                     showToast('Sản phẩm đã được cập nhật thành công!');
@@ -796,7 +865,7 @@
                         category,
                         createdAt: Date.now()
                     };
-                    
+                                        
                     showLoading(submitBtn);
                     const id = await db.add(STORE_PRODUCTS, newProduct);
                     newProduct.id = id;
@@ -827,7 +896,7 @@
                 showToast('Không tìm thấy sản phẩm.', true);
                 return;
             }
-            
+                        
             showElement(productFormSection);
             hideElement(searchResultsSection);
 
@@ -866,34 +935,42 @@
             );
         };
         
-        const handleRenameCategory = (oldName) => {
-            const newName = prompt(`Nhập tên mới cho phân loại "${oldName}":`);
-            if (!newName || newName.trim() === '' || newName.trim() === oldName) {
+        const showRenameModal = (oldName) => {
+            currentCategoryToRename = oldName;
+            renameCategoryInput.value = oldName;
+            showElement(renameModal);
+        };
+
+        const handleRenameCategory = async () => {
+            const oldName = currentCategoryToRename;
+            const newName = capitalizeFirstLetterOfEachWord(renameCategoryInput.value.trim());
+            hideElement(renameModal);
+
+            if (!newName || newName === oldName) {
                 return;
             }
-            const trimmedNewName = capitalizeFirstLetterOfEachWord(newName.trim()); // Viết hoa chữ cái đầu tiên
-            if (categories.includes(trimmedNewName)) {
+            if (categories.includes(newName)) {
                 showToast('Tên phân loại đã tồn tại. Vui lòng chọn tên khác.', true);
                 return;
             }
 
             showConfirmationModal(
                 'Xác nhận đổi tên phân loại',
-                `Bạn có chắc chắn muốn đổi tên phân loại "${oldName}" thành "${trimmedNewName}"? Thao tác này sẽ cập nhật tất cả sản phẩm liên quan.`,
+                `Bạn có chắc chắn muốn đổi tên phân loại "${oldName}" thành "${newName}"? Thao tác này sẽ cập nhật tất cả sản phẩm liên quan.`,
                 async () => {
                     try {
                         const productsToUpdate = products.filter(p => p.category === oldName);
                         await db.delete(STORE_CATEGORIES, oldName);
-                        await db.add(STORE_CATEGORIES, { name: trimmedNewName });
+                        await db.add(STORE_CATEGORIES, { name: newName });
                         
                         for (const product of productsToUpdate) {
-                            product.category = trimmedNewName;
+                            product.category = newName;
                             await db.put(STORE_PRODUCTS, product);
                         }
 
                         // Sync in-memory data
-                        categories = categories.map(cat => (cat === oldName ? trimmedNewName : cat));
-                        products = products.map(p => (p.category === oldName ? { ...p, category: trimmedNewName } : p));
+                        categories = categories.map(cat => (cat === oldName ? newName : cat));
+                        products = products.map(p => (p.category === oldName ? { ...p, category: newName } : p));
                         
                         renderProducts();
                         renderCategories();
@@ -901,6 +978,33 @@
                     } catch (error) {
                         console.error('Lỗi khi đổi tên phân loại:', error);
                         showToast('Lỗi khi đổi tên phân loại.', true);
+                    }
+                }
+            );
+        };
+
+        const handleDeleteCategory = (categoryName) => {
+            showConfirmationModal(
+                'Xác nhận xóa phân loại',
+                `Bạn có chắc chắn muốn xóa phân loại "${categoryName}"? Tất cả sản phẩm thuộc loại này sẽ bị xóa.`,
+                async () => {
+                    try {
+                        const productsToDelete = products.filter(p => p.category === categoryName);
+                        for (const product of productsToDelete) {
+                            await db.delete(STORE_PRODUCTS, product.id);
+                        }
+                        await db.delete(STORE_CATEGORIES, categoryName);
+
+                        // Sync in-memory data
+                        products = products.filter(p => p.category !== categoryName);
+                        categories = categories.filter(cat => cat !== categoryName);
+                        
+                        renderProducts();
+                        renderCategories();
+                        showToast('Đã xóa phân loại và các sản phẩm liên quan!');
+                    } catch (error) {
+                        console.error('Lỗi khi xóa phân loại:', error);
+                        showToast('Lỗi khi xóa phân loại.', true);
                     }
                 }
             );
@@ -914,7 +1018,7 @@
             submitBtn.textContent = 'Thêm sản phẩm';
             hideElement(cancelEditBtn);
         };
-        
+
         const handleMainSearch = () => {
             const query = normalizeString(searchInput.value.trim());
 
@@ -922,14 +1026,15 @@
                 clearTimeout(searchTimeoutId);
             }
 
-            const results = products.filter(product => {
-                const nameMatch = normalizeString(product.name).includes(query);
-                const categoryMatch = normalizeString(product.category).includes(query);
-                return nameMatch || categoryMatch;
-            });
-
             if (query === '') {
                 hideElement(searchResultsSection);
+                if (productFormSection.classList.contains('hidden')) {
+                    toggleFormBtn.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                    `;
+                }
             } else {
                 showElement(searchResultsSection);
                 hideElement(productFormSection);
@@ -938,11 +1043,15 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" />
                     </svg>
                 `;
+                const results = products.filter(product => {
+                    const nameMatch = normalizeString(product.name).includes(query);
+                    const categoryMatch = normalizeString(product.category).includes(query);
+                    return nameMatch || categoryMatch;
+                });
                 renderSearchResults(results);
-                
                 searchTimeoutId = setTimeout(() => {
                     saveSearchHistory(searchInput.value.trim());
-                }, 1000); 
+                }, 1000);
             }
         };
 
@@ -995,26 +1104,24 @@
                         'Thao tác này sẽ XÓA tất cả dữ liệu hiện tại và thay thế bằng dữ liệu từ tệp. Bạn có chắc chắn muốn tiếp tục?',
                         async () => {
                             try {
-                                await db.conn.close(); // Close existing connection to allow for a new one
-                                const request = indexedDB.deleteDatabase(DB_NAME);
-                                request.onsuccess = async () => {
-                                    console.log('Database deleted successfully.');
-                                    await db.connect();
-                                    const transaction = db.conn.transaction([STORE_PRODUCTS, STORE_CATEGORIES], 'readwrite');
-                                    const productStore = transaction.objectStore(STORE_PRODUCTS);
-                                    const categoryStore = transaction.objectStore(STORE_CATEGORIES);
+                                await db.deleteAll(STORE_PRODUCTS);
+                                await db.deleteAll(STORE_CATEGORIES);
+                                await db.deleteAll(STORE_HISTORY);
+                                
+                                const transaction = db.conn.transaction([STORE_PRODUCTS, STORE_CATEGORIES], 'readwrite');
+                                const productStore = transaction.objectStore(STORE_PRODUCTS);
+                                const categoryStore = transaction.objectStore(STORE_CATEGORIES);
 
-                                    importedData.products.forEach(product => productStore.add(product));
-                                    importedData.categories.forEach(category => categoryStore.add(category));
+                                importedData.products.forEach(product => productStore.add(product));
+                                importedData.categories.forEach(category => categoryStore.add(category));
 
-                                    transaction.oncomplete = () => {
-                                        showToast('Dữ liệu đã được khôi phục thành công!');
-                                        loadAllData();
-                                    };
-                                    transaction.onerror = (e) => {
-                                        console.error(e);
-                                        showToast('Lỗi khi khôi phục dữ liệu.', true);
-                                    };
+                                transaction.oncomplete = () => {
+                                    showToast('Dữ liệu đã được khôi phục thành công!');
+                                    loadAllData();
+                                };
+                                transaction.onerror = (e) => {
+                                    console.error(e);
+                                    showToast('Lỗi khi khôi phục dữ liệu.', true);
                                 };
                             } catch (error) {
                                 console.error('Lỗi khi khôi phục dữ liệu:', error);
@@ -1047,13 +1154,13 @@
         });
 
         productNameInput.addEventListener('input', (event) => {
-            event.target.value = event.target.value.toUpperCase(); // Chuyển sang in hoa
+            event.target.value = capitalizeFirstLetterOfEachWord(event.target.value);
             const query = productNameInput.value.trim();
             if (query.length > 0) {
                 const suggestions = products.filter(p => 
                     normalizeString(p.name).includes(normalizeString(query)) && p.id !== currentProductId
                 );
-                
+                                
                 productNameSuggestions.innerHTML = '';
                 if (suggestions.length > 0) {
                     suggestions.forEach(sug => {
@@ -1082,25 +1189,16 @@
         });
         
         searchInput.addEventListener('input', (event) => {
-            event.target.value = event.target.value.toUpperCase(); // Chuyển sang in hoa
+            event.target.value = capitalizeFirstLetterOfEachWord(event.target.value);
             handleMainSearch();
         });
-
-        // Chỉ viết hoa chữ cái đầu tiên của mỗi từ cho Đơn vị tính
-        productUnitInput.addEventListener('input', (event) => {
-            const originalCursorPosition = event.target.selectionStart;
-            const capitalizedValue = capitalizeFirstLetterOfEachWord(event.target.value);
-            event.target.value = capitalizedValue;
-            // Đặt lại vị trí con trỏ sau khi cập nhật giá trị
-            event.target.setSelectionRange(originalCursorPosition, originalCursorPosition);
-        });
         
-        // Bỏ chức năng viết hoa cho Phân loại mới
-        newCategoryInput.removeEventListener('input', (event) => {
-            const originalCursorPosition = event.target.selectionStart;
-            const capitalizedValue = capitalizeFirstLetterOfEachWord(event.target.value);
-            event.target.value = capitalizedValue;
-            event.target.setSelectionRange(originalCursorPosition, originalCursorPosition);
+        productUnitInput.addEventListener('input', (event) => {
+            event.target.value = capitalizeFirstLetterOfEachWord(event.target.value);
+        });
+
+        newCategoryInput.addEventListener('input', (event) => {
+            event.target.value = capitalizeFirstLetterOfEachWord(event.target.value);
         });
 
         toggleFormBtn.addEventListener('click', () => {
@@ -1146,7 +1244,7 @@
             currentPage = 1;
             renderProducts();
         });
-        
+
         loadMoreBtn.addEventListener('click', () => {
             currentPage++;
             renderProducts();
@@ -1159,6 +1257,12 @@
                 handleImportData(file);
             }
         });
+        
+        renameConfirmBtn.addEventListener('click', handleRenameCategory);
+        renameCancelBtn.addEventListener('click', () => {
+            hideElement(renameModal);
+        });
+        
     </script>
 </body>
 </html>
