@@ -53,7 +53,7 @@
         .dark input::placeholder {
             color: #888;
         }
-        
+
         /* Custom Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -100,9 +100,8 @@
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 p-8 flex items-center justify-center min-h-screen transition-all duration-300">
     <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-2xl w-full max-w-2xl transform transition-all duration-500">
-        <!-- Header và nút Dark Mode -->
         <div class="flex items-center justify-between mb-6">
-            <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-100"></h1>
+            <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-100">Ứng dụng Quản lý Sản phẩm</h1>
             <button id="toggle-dark-mode" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 transition-colors duration-300">
                 <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.847 8.621a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.06l1.59-1.591zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.389 18.847a.75.75 0 00-1.06-1.06l-1.59 1.59a.75.75 0 01-1.06 1.06l-1.591-1.59a.75.75 0 00-1.06 1.06l1.59 1.591a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.06 1.06zM6.75 12a.75.75 0 00-.75-.75H3a.75.75 0 000 1.5h2.25a.75.75 0 00.75-.75zM4.621 17.389a.75.75 0 00-1.06-1.06l-1.59 1.59a.75.75 0 101.06 1.06l1.59-1.59zM12 18.75a.75.75 0 00-.75.75v2.25a.75.75 0 001.5 0V19.5a.75.75 0 00-.75-.75zM6.75 12a.75.75 0 00-.75-.75H3a.75.75 0 000 1.5h2.25a.75.75 0 00.75-.75zM17.389 18.847a.75.75 0 00-1.06-1.06l-1.59 1.59a.75.75 0 01-1.06 1.06l-1.591-1.59a.75.75 0 00-1.06 1.06l1.59 1.591a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.06 1.06zM6.75 12a.75.75 0 00-.75-.75H3a.75.75 0 000 1.5h2.25a.75.75 0 00.75-.75zM4.621 17.389a.75.75 0 00-1.06-1.06l-1.59 1.59a.75.75 0 101.06 1.06l1.59-1.59zM12 18.75a.75.75 0 00-.75.75v2.25a.75.75 0 001.5 0V19.5a.75.75 0 00-.75-.75zM6.75 12a.75.75 0 00-.75-.75H3a.75.75 0 000 1.5h2.25a.75.75 0 00.75-.75z" />
@@ -112,8 +111,6 @@
                 </svg>
             </button>
         </div>
-
-        <!-- Thanh tìm kiếm và nút Thêm/Đóng -->
         <div class="flex items-center space-x-4 mb-6">
             <div class="relative flex-grow">
                 <input
@@ -128,7 +125,6 @@
                     </svg>
                 </div>
             </div>
-
             <button
                 id="toggle-form-btn"
                 class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-lime-500 text-white rounded-full font-semibold text-2xl hover:bg-lime-600 transition transform hover:scale-110 duration-300 shadow-lg"
@@ -138,15 +134,11 @@
                 </svg>
             </button>
         </div>
-        
-        <!-- Lịch sử tìm kiếm -->
         <div id="history-section" class="mb-6">
             <h2 class="text-md font-semibold text-gray-700 dark:text-gray-400 mb-2">Lịch sử tìm kiếm gần đây</h2>
             <div id="history-list" class="flex flex-wrap gap-2">
             </div>
         </div>
-
-        <!-- Phần Thêm/Sửa sản phẩm và quản lý phân loại -->
         <div id="product-form-section" class="p-4 rounded-2xl bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 animate-fade-in hidden">
             <div class="mb-6">
                 <h2 id="form-title" class="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-200">Thêm sản phẩm</h2>
@@ -217,8 +209,6 @@
                     </div>
                 </form>
             </div>
-
-            <!-- Phần quản lý phân loại -->
             <div class="p-4 rounded-2xl bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 animate-fade-in mt-4">
                 <button id="toggle-category-btn" class="flex items-center justify-between w-full text-xl font-semibold mb-2 text-gray-700 dark:text-gray-200 focus:outline-none">
                     <span>Quản lý Phân loại</span>
@@ -238,8 +228,6 @@
                     <ul id="category-list" class="space-y-2"></ul>
                 </div>
             </div>
-
-            <!-- Danh sách sản phẩm -->
             <div id="product-list-section">
                 <hr class="my-4 border-gray-200 dark:border-gray-600" />
                 <div class="flex justify-between items-center mb-4">
@@ -274,8 +262,6 @@
                     </button>
                 </div>
             </div>
-
-            <!-- Sao lưu và Phục hồi -->
             <hr class="my-4 border-gray-200 dark:border-gray-600" />
             <div class="animate-fade-in">
                 <h2 class="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-200">Sao lưu & Phục hồi</h2>
@@ -292,16 +278,12 @@
                 </div>
             </div>
         </div>
-
-        <!-- Phần hiển thị kết quả tìm kiếm -->
         <div id="search-results-section" class="hidden p-4 rounded-2xl bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 animate-fade-in">
-            <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-4"></h2>
+            <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-4">Kết quả tìm kiếm</h2>
             <ul id="search-results-list" class="space-y-2"></ul>
             <div id="no-results" class="hidden text-center text-gray-500 dark:text-gray-400 italic mt-4">Không tìm thấy sản phẩm nào.</div>
         </div>
     </div>
-
-    <!-- Hộp thoại xác nhận (dùng chung cho xóa và đổi tên phân loại) -->
     <div id="confirmation-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 hidden">
         <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white dark:bg-gray-800">
             <div class="mt-3 text-center">
@@ -320,8 +302,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Hộp thoại tùy chỉnh để đổi tên phân loại -->
     <div id="rename-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 hidden">
         <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white dark:bg-gray-800">
             <div class="mt-3 text-center">
@@ -340,8 +320,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Thông báo Toast -->
     <div id="toast-notification" class="fixed bottom-5 right-5 p-4 rounded-lg shadow-lg z-50 hidden">
         <div class="flex items-center space-x-2">
             <svg id="toast-icon-success" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -353,7 +331,6 @@
             <span id="toast-text" class="text-white"></span>
         </div>
     </div>
-
     <script>
         // --- Cấu hình IndexedDB và các biến toàn cục ---
         const DB_NAME = 'product-db';
@@ -419,7 +396,6 @@
         const renameConfirmBtn = document.getElementById('rename-confirm-btn');
         const renameCancelBtn = document.getElementById('rename-cancel-btn');
 
-
         let isEditing = false;
         let currentProductId = null;
         let currentCategoryToRename = null;
@@ -427,14 +403,14 @@
         // --- Helper Functions ---
         const showElement = (element) => element.classList.remove('hidden');
         const hideElement = (element) => element.classList.add('hidden');
-        
-        // Chuẩn hóa chuỗi để tìm kiếm không dấu
-        const normalizeString = (str) => {
+
+        // Hàm VIẾT HOA TOÀN BỘ (Dùng cho Tên sản phẩm)
+        const toUpperCase = (str) => {
             if (!str) return '';
-            return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            return str.toUpperCase();
         };
 
-        // Viết hoa chữ cái đầu tiên của mỗi từ
+        // Hàm Viết hoa chữ cái đầu tiên của mỗi từ (Dùng cho Đơn vị tính, Phân loại)
         const capitalizeFirstLetterOfEachWord = (str) => {
             if (!str) return '';
             const words = str.toLowerCase().split(' ').filter(word => word.length > 0);
@@ -442,6 +418,12 @@
                 words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
             }
             return words.join(' ');
+        };
+
+        // Chuẩn hóa chuỗi để tìm kiếm không dấu
+        const normalizeString = (str) => {
+            if (!str) return '';
+            return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         };
 
         const showLoading = (btn) => {
@@ -479,7 +461,7 @@
             confirmationTitle.textContent = title;
             confirmationMessage.textContent = message;
             showElement(confirmationModal);
-            
+
             const handleConfirm = () => {
                 onConfirm();
                 hideElement(confirmationModal);
@@ -499,21 +481,21 @@
 
         const sortAndFilterProducts = () => {
             const productListQuery = normalizeString(productListSearchInput.value.trim());
-            
+
             const filteredProducts = products.filter(product => {
                 const nameMatch = normalizeString(product.name).includes(productListQuery);
                 const categoryMatch = normalizeString(product.category).includes(productListQuery);
                 return nameMatch || categoryMatch;
             });
-            
+
             const sortedProducts = [...filteredProducts].sort((a, b) => {
                 const aValue = a[currentSort.key];
                 const bValue = b[currentSort.key];
-                
+
                 if (typeof aValue === 'string' && typeof bValue === 'string') {
-                    return currentSort.direction === 'asc' 
-                        ? normalizeString(aValue).localeCompare(normalizeString(bValue)) 
-                        : normalizeString(bValue).localeCompare(normalizeString(aValue));
+                    return currentSort.direction === 'asc'
+                         ? normalizeString(aValue).localeCompare(normalizeString(bValue))
+                         : normalizeString(bValue).localeCompare(normalizeString(aValue));
                 } else {
                     if (aValue === null) return currentSort.direction === 'asc' ? 1 : -1;
                     if (bValue === null) return currentSort.direction === 'asc' ? -1 : 1;
@@ -524,7 +506,7 @@
                     }
                 }
             });
-            
+
             const visibleProducts = sortedProducts.slice(0, currentPage * PAGE_SIZE);
             return { visibleProducts, totalFiltered: sortedProducts.length };
         };
@@ -543,7 +525,6 @@
                     li.style.animationDelay = `${index * 0.05}s`;
                     li.innerHTML = `
                         <div class="flex-grow flex items-center">
-                            <!-- Hiển thị số thứ tự -->
                             <span class="mr-2 text-sm font-semibold text-gray-500 dark:text-gray-400">${index + 1}.</span>
                             <div>
                                 <p class="font-semibold text-gray-800 dark:text-gray-100 text-sm">
@@ -575,7 +556,7 @@
 
             document.querySelectorAll('.edit-btn').forEach(btn => btn.addEventListener('click', (e) => handleEditClick(parseInt(e.currentTarget.dataset.id))));
             document.querySelectorAll('.delete-btn').forEach(btn => btn.addEventListener('click', (e) => handleDeleteClick(parseInt(e.currentTarget.dataset.id))));
-            
+
             if (totalFiltered > currentPage * PAGE_SIZE) {
                 showElement(loadMoreContainer);
             } else {
@@ -586,7 +567,7 @@
         const renderCategories = () => {
             productCategorySelect.innerHTML = '<option value="">Chọn một loại</option>';
             categoryList.innerHTML = '';
-            
+
             const categoryQuery = normalizeString(categorySearchInput.value.trim());
             const filteredCategories = categories.filter(cat => normalizeString(cat).includes(categoryQuery));
 
@@ -672,7 +653,7 @@
                 });
             }
         };
-        
+
         // --- Dark Mode Logic ---
         const setupDarkMode = () => {
             const isDarkMode = localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
@@ -826,10 +807,13 @@
         // --- Data Handling ---
         const handleFormSubmit = async (event) => {
             event.preventDefault();
-            const name = capitalizeFirstLetterOfEachWord(productNameInput.value.trim());
+            // CHỈNH SỬA: Tên sản phẩm dùng toUpperCase()
+            const name = toUpperCase(productNameInput.value.trim()); 
             const quantity = productQuantityInput.value ? parseInt(productQuantityInput.value) : null;
-            const unit = capitalizeFirstLetterOfEachWord(productUnitInput.value.trim());
-            const newCategory = capitalizeFirstLetterOfEachWord(newCategoryInput.value.trim());
+            // CHỈNH SỬA: Đơn vị tính dùng capitalizeFirstLetterOfEachWord()
+            const unit = capitalizeFirstLetterOfEachWord(productUnitInput.value.trim()); 
+            // CHỈNH SỬA: Phân loại mới dùng capitalizeFirstLetterOfEachWord()
+            const newCategory = capitalizeFirstLetterOfEachWord(newCategoryInput.value.trim()); 
             const category = newCategory || productCategorySelect.value;
 
             if (!name) {
@@ -852,7 +836,7 @@
                     product.quantity = quantity;
                     product.unit = unit;
                     product.category = category;
-                                        
+
                     showLoading(submitBtn);
                     await db.put(STORE_PRODUCTS, product);
                     showToast('Sản phẩm đã được cập nhật thành công!');
@@ -865,7 +849,7 @@
                         category,
                         createdAt: Date.now()
                     };
-                                        
+
                     showLoading(submitBtn);
                     const id = await db.add(STORE_PRODUCTS, newProduct);
                     newProduct.id = id;
@@ -896,7 +880,7 @@
                 showToast('Không tìm thấy sản phẩm.', true);
                 return;
             }
-                        
+
             showElement(productFormSection);
             hideElement(searchResultsSection);
 
@@ -934,7 +918,7 @@
                 }
             );
         };
-        
+
         const showRenameModal = (oldName) => {
             currentCategoryToRename = oldName;
             renameCategoryInput.value = oldName;
@@ -943,6 +927,7 @@
 
         const handleRenameCategory = async () => {
             const oldName = currentCategoryToRename;
+            // CHỈNH SỬA: Đổi tên phân loại dùng capitalizeFirstLetterOfEachWord()
             const newName = capitalizeFirstLetterOfEachWord(renameCategoryInput.value.trim());
             hideElement(renameModal);
 
@@ -962,7 +947,7 @@
                         const productsToUpdate = products.filter(p => p.category === oldName);
                         await db.delete(STORE_CATEGORIES, oldName);
                         await db.add(STORE_CATEGORIES, { name: newName });
-                        
+
                         for (const product of productsToUpdate) {
                             product.category = newName;
                             await db.put(STORE_PRODUCTS, product);
@@ -971,7 +956,7 @@
                         // Sync in-memory data
                         categories = categories.map(cat => (cat === oldName ? newName : cat));
                         products = products.map(p => (p.category === oldName ? { ...p, category: newName } : p));
-                        
+
                         renderProducts();
                         renderCategories();
                         showToast('Đã đổi tên phân loại và cập nhật sản phẩm thành công!');
@@ -998,7 +983,7 @@
                         // Sync in-memory data
                         products = products.filter(p => p.category !== categoryName);
                         categories = categories.filter(cat => cat !== categoryName);
-                        
+
                         renderProducts();
                         renderCategories();
                         showToast('Đã xóa phân loại và các sản phẩm liên quan!');
@@ -1084,7 +1069,7 @@
         const checkDailyBackup = () => {
             const today = new Date().toISOString().split('T')[0];
             const lastBackupDate = localStorage.getItem(LAST_BACKUP_TIME_KEY);
-            
+
             if (lastBackupDate !== today) {
                 showToast('Đã đến giờ sao lưu hàng ngày. Vui lòng nhấn nút "Sao lưu dữ liệu" để đảm bảo an toàn!');
             }
@@ -1107,7 +1092,7 @@
                                 await db.deleteAll(STORE_PRODUCTS);
                                 await db.deleteAll(STORE_CATEGORIES);
                                 await db.deleteAll(STORE_HISTORY);
-                                
+
                                 const transaction = db.conn.transaction([STORE_PRODUCTS, STORE_CATEGORIES], 'readwrite');
                                 const productStore = transaction.objectStore(STORE_PRODUCTS);
                                 const categoryStore = transaction.objectStore(STORE_CATEGORIES);
@@ -1153,14 +1138,15 @@
             }
         });
 
+        // CHỈNH SỬA: Tên sản phẩm dùng toUpperCase()
         productNameInput.addEventListener('input', (event) => {
-            event.target.value = capitalizeFirstLetterOfEachWord(event.target.value);
+            event.target.value = toUpperCase(event.target.value);
             const query = productNameInput.value.trim();
             if (query.length > 0) {
-                const suggestions = products.filter(p => 
+                const suggestions = products.filter(p =>
                     normalizeString(p.name).includes(normalizeString(query)) && p.id !== currentProductId
                 );
-                                
+
                 productNameSuggestions.innerHTML = '';
                 if (suggestions.length > 0) {
                     suggestions.forEach(sug => {
@@ -1181,22 +1167,24 @@
                 hideElement(productNameSuggestions);
             }
         });
-        
+
         productNameInput.addEventListener('blur', () => {
             setTimeout(() => {
                 hideElement(productNameSuggestions);
             }, 200);
         });
-        
+
+        // Tìm kiếm chính (giữ nguyên không đổi chữ)
         searchInput.addEventListener('input', (event) => {
-            event.target.value = capitalizeFirstLetterOfEachWord(event.target.value);
             handleMainSearch();
         });
-        
+
+        // CHỈNH SỬA: Đơn vị tính dùng capitalizeFirstLetterOfEachWord()
         productUnitInput.addEventListener('input', (event) => {
             event.target.value = capitalizeFirstLetterOfEachWord(event.target.value);
         });
 
+        // CHỈNH SỬA: Phân loại mới dùng capitalizeFirstLetterOfEachWord()
         newCategoryInput.addEventListener('input', (event) => {
             event.target.value = capitalizeFirstLetterOfEachWord(event.target.value);
         });
@@ -1221,7 +1209,7 @@
                 `;
             }
         });
-        
+
         toggleCategoryBtn.addEventListener('click', () => {
             categoryContent.classList.toggle('hidden');
             toggleCategoryBtn.classList.toggle('collapsed');
@@ -1231,7 +1219,7 @@
         cancelEditBtn.addEventListener('click', () => {
             resetForm();
         });
-        
+
         categorySearchInput.addEventListener('input', renderCategories);
         productListSearchInput.addEventListener('input', () => {
             currentPage = 1;
@@ -1257,12 +1245,11 @@
                 handleImportData(file);
             }
         });
-        
+
         renameConfirmBtn.addEventListener('click', handleRenameCategory);
         renameCancelBtn.addEventListener('click', () => {
             hideElement(renameModal);
         });
-        
     </script>
 </body>
 </html>
